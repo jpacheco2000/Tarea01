@@ -18,3 +18,9 @@ ejemploQuickSort: quickSort.o ejemploQuickSort.c
 
 ejemploSorts: ejemploSorts.c quickSort.o insertionSort.o radixSort.o
 	gcc -o ejemploSorts ejemploSorts.c quickSort.o insertionSort.o radixSort.o
+
+tarea2: tarea2.c quickSort.o insertionSort.o radixSort.o
+	gcc -o tarea2 tarea2.c quickSort.o insertionSort.o radixSort.o
+
+tarea3: tarea3.c quickSort.o insertionSort.o radixSort.o
+	gcc -o tarea3 tarea3.c quickSort.o insertionSort.o radixSort.o
