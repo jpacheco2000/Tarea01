@@ -47,7 +47,8 @@ int main (int argc, char **argv){
 
     n = sizeof(vec) / sizeof(vec[0]);
     inicio = clock();
-    quickSort(vec, 0, n-1);
+//    quickSort(vec, 0, n-1);
+    radixsort(vec, n);
     fin = clock();
 
     fprintf(informe,"Reporte Tarea2\n");
@@ -58,6 +59,7 @@ int main (int argc, char **argv){
 
     n = sizeof(vec2) / sizeof(vec2[0]);
     inicio = clock();
+    quickSort(vec2, 0, n-1);
 //    radixsort(vec2, n);
     fin = clock();
 
@@ -73,7 +75,6 @@ int main (int argc, char **argv){
 
     i=0;j=0;
     for (f = 0; f<tam; f++) {
-      printf("%i\n", vec[f]);
       fprintf(salida,"%i", vec[f]%2);
       i++;
       if ( i == 1920 ) { 

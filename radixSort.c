@@ -1,5 +1,7 @@
 // Radix Sort in C Programming
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
 const int N = 10;
 // Function to get the largest element from an array
 int getMax(int array[], int n) {
@@ -16,9 +18,10 @@ int getMax(int array[], int n) {
 //
 //
 void countingSort(int arr[], int n, int place) {
-    int output[n];
+    int *output;
     int count[N];
 
+    output = malloc(sizeof(int)*(n));
     for (int i = 0; i < N; ++i)
         count[i] = 0;
 
