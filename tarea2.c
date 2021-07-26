@@ -14,9 +14,9 @@
 int main (int argc, char **argv){
     int n;
     FILE *arch,*informe,*salida;
-    int vec[tam];
-    time_t inicio,fin;
-    int tvec2[tam];
+    int *vec;
+    int *vec2;
+    clock_t inicio,fin;
     int f,i,j,ret;
     char str[100];
   
@@ -38,28 +38,32 @@ int main (int argc, char **argv){
     	printf("Modo de uso: %s ArchivoEntrada ArchivoSalida.pbm \n",argv[0]);
         exit(1);
     }
+    vec = malloc(sizeof(int)*(tam));
+    vec2 = malloc(sizeof(int)*(tam));
     ret=fread(vec, sizeof(int), tam, arch);
-    printf("Lei %d\n",ret);
+    for ( i=0; i<tam ; i++) {
+	    vec2[i] = vec[i] ; 
+    }
 
     n = sizeof(vec) / sizeof(vec[0]);
-    inicio = time(NULL);
+    inicio = clock();
     quickSort(vec, 0, n-1);
-    fin = time(NULL);
+    fin = clock();
 
     fprintf(informe,"Reporte Tarea2\n");
     fprintf(informe,"==============\n\n\n");
-    fprintf(informe,"Tiempo QuickSort O(nLog(n)) : %ld \n\n",fin-inicio);
+    fprintf(informe,"Tiempo QuickSort O(nLog(n)) : %f \n\n",(double)(fin - inicio)/CLOCKS_PER_SEC);
 
 
 
-    n = sizeof(vec) / sizeof(vec[0]);
-    inicio = time(NULL);
-    radixsort(vec, n);
-    fin = time(NULL);
+    n = sizeof(vec2) / sizeof(vec2[0]);
+    inicio = clock();
+    radixsort(vec2, n);
+    fin = clock();
 
-    fprintf(informe,"Tiempo RadixSort O(d x) : %ld \n\n",fin-inicio);
+    fprintf(informe,"Tiempo RadixSort O(d x) : %f \n\n",(double)(fin - inicio)/CLOCKS_PER_SEC);
 
-/*    insertionSort(tvec2, n);  */
+/*    insertionSort(vec2, n);  */
     fprintf(informe,"Tiempo InsertionSort O(n2) : No Disponible muy lento\n\n");
 
 

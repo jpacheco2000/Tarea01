@@ -1,6 +1,6 @@
 // Radix Sort in C Programming
 #include <stdio.h>
-
+const int N = 10;
 // Function to get the largest element from an array
 int getMax(int array[], int n) {
   int max = array[0];
@@ -11,10 +11,36 @@ int getMax(int array[], int n) {
 }
 
 // Using counting sort to sort the elements in the basis of significant places
-void countingSort(int array[], int size, int place) {
-  int output[size + 1];
-  int max = (array[0] / place) % 10;
+//
+//
+//
+//
+void countingSort(int arr[], int n, int place) {
+    int output[n];
+    int count[N];
 
+    for (int i = 0; i < N; ++i)
+        count[i] = 0;
+
+    for (int i = 0; i < n; i++)
+        count[(arr[i] / place) % 10]++;
+
+    for (int i = 1; i < N; i++)
+        count[i] += count[i - 1];
+
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[(arr[i] / place) % 10] - 1] = arr[i];
+        count[(arr[i] / place) % 10]--;
+    }
+
+    for (int i = 0; i < n; i++)
+        arr[i] = output[i];
+}
+
+void oldcountingSort(int array[], int size, int place) {
+  int output[size];
+  int max = (array[0] / place) % 10;
+  
   for (int i = 1; i < size; i++) {
     if (((array[i] / place) % 10) > max)
       max = array[i];
