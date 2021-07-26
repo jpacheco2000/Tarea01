@@ -14,7 +14,7 @@
 int main (int argc, char **argv){
     int n;
     FILE *arch,*informe,*salida;
-    int *vec;
+    int vec[tam];
     int *vec2;
     clock_t inicio,fin;
     int f,i,j,ret;
@@ -38,7 +38,7 @@ int main (int argc, char **argv){
     	printf("Modo de uso: %s ArchivoEntrada ArchivoSalida.pbm \n",argv[0]);
         exit(1);
     }
-    vec = malloc(sizeof(int)*(tam));
+//    vec = malloc(sizeof(int)*(tam));
     vec2 = malloc(sizeof(int)*(tam));
     ret=fread(vec, sizeof(int), tam, arch);
     for ( i=0; i<tam ; i++) {
@@ -58,7 +58,7 @@ int main (int argc, char **argv){
 
     n = sizeof(vec2) / sizeof(vec2[0]);
     inicio = clock();
-    radixsort(vec2, n);
+//    radixsort(vec2, n);
     fin = clock();
 
     fprintf(informe,"Tiempo RadixSort O(d x) : %f \n\n",(double)(fin - inicio)/CLOCKS_PER_SEC);
@@ -73,6 +73,7 @@ int main (int argc, char **argv){
 
     i=0;j=0;
     for (f = 0; f<tam; f++) {
+      printf("%i\n", vec[f]);
       fprintf(salida,"%i", vec[f]%2);
       i++;
       if ( i == 1920 ) { 

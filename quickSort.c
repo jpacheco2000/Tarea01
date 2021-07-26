@@ -7,7 +7,7 @@ int temp = *x;
 *y = temp; 
 }   
 // Partition function
-int partition (int arr[], int lowIndex, int highIndex) 
+int partition (int *arr, int lowIndex, int highIndex) 
 { 
 int pivotElement = arr[highIndex];
 int i = (lowIndex - 1); 
@@ -23,7 +23,7 @@ swapElements(&arr[i + 1], &arr[highIndex]);
 return (i + 1); 
 }   
 // QuickSort Function
-void quickSort(int arr[], int lowIndex, int highIndex) 
+void quickSort(int *arr, int lowIndex, int highIndex) 
 { 
 if (lowIndex < highIndex) 
 { 
