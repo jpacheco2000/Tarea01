@@ -39,34 +39,21 @@ int main (int argc, char **argv){
         exit(1);
     }
 //    vec = malloc(sizeof(int)*(tam));
-    vec2 = malloc(sizeof(int)*(tam));
+//    vec2 = malloc(sizeof(int)*(tam));
     ret=fread(vec, sizeof(int), tam, arch);
-    for ( i=0; i<tam ; i++) {
-	    vec2[i] = vec[i] ; 
-    }
+//    for ( i=0; i<tam ; i++) {
+//	    vec2[i] = vec[i] ; 
+ //   }
 
     n = sizeof(vec) / sizeof(vec[0]);
     inicio = clock();
-//    quickSort(vec, 0, n-1);
-    radixsort(vec, n);
+    quickSort(vec, 0, n-1);
+//    radixsort(vec, n);
     fin = clock();
 
     fprintf(informe,"Reporte Tarea2\n");
     fprintf(informe,"==============\n\n\n");
     fprintf(informe,"Tiempo QuickSort O(nLog(n)) : %f \n\n",(double)(fin - inicio)/CLOCKS_PER_SEC);
-
-
-
-    n = sizeof(vec2) / sizeof(vec2[0]);
-    inicio = clock();
-    quickSort(vec2, 0, n-1);
-//    radixsort(vec2, n);
-    fin = clock();
-
-    fprintf(informe,"Tiempo RadixSort O(d x) : %f \n\n",(double)(fin - inicio)/CLOCKS_PER_SEC);
-
-/*    insertionSort(vec2, n);  */
-    fprintf(informe,"Tiempo InsertionSort O(n2) : No Disponible muy lento\n\n");
 
 
     
@@ -75,6 +62,7 @@ int main (int argc, char **argv){
 
     i=0;j=0;
     for (f = 0; f<tam; f++) {
+ //     printf("%i \n", vec[f]);
       fprintf(salida,"%i", vec[f]%2);
       i++;
       if ( i == 1920 ) { 
@@ -83,6 +71,23 @@ int main (int argc, char **argv){
       }
     }
 
+    n = sizeof(vec) / sizeof(vec[0]);
+    fclose(arch);
+    arch = fopen(argv[1], "rb");
+
+    ret=fread(vec, sizeof(int), tam, arch);
+    inicio = clock();
+//    quickSort(vec2, 0, n-1);
+    radixsort(vec, n);
+    fin = clock();
+
+    fprintf(informe,"Tiempo RadixSort O(d x) : %f \n\n",(double)(fin - inicio)/CLOCKS_PER_SEC);
+
+/*    insertionSort(vec2, n);  */
+    fprintf(informe,"Tiempo InsertionSort O(n2) : No Disponible muy lento\n\n");
+
+//    free(vec);
+ //   free(vec2);
     fclose(arch);
     fclose(salida);
     fclose(informe);
